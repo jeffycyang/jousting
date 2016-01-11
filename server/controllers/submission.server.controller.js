@@ -26,13 +26,16 @@ exports.getSubmissionInfo = function(req, res) {
 				.exec(function(err, user) {
 					Submission.findOne({ challenge: challenge._id, user: user._id })
 						.exec(function(err, submission) {
-
+							if(submission === null){
+								res.sendStatus(500);
+							}else{
 							// res.writeHead(200, {'Content-Type': 'image/jpeg'});
 							// res.write(new Buffer(submission['submission'],"base64"));
 							// res.end();
 
-							res.set('Content-Type', 'image/jpeg');
-							res.send(new Buffer(submission['submission'],"base64"));
+								res.set('Content-Type', 'image/jpeg');
+								res.send(new Buffer(submission['submission'],"base64"));
+							}
 
 						});
 				});

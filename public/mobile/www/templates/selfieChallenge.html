@@ -1,29 +1,32 @@
-<body ng-app="app">
-  <ion-content overflow-scroll="true" padding="true" class="has-header padding" ng-controller="ImageController">
-        <div class="spacer" style="height: 100px;"></div>
-        <h3>The Kevin Challenge</h3>
-        <div>
-            <p>Take a picture of your own face #nofilter #selfie #yolo #swag</p>
-        </div>
-        <div class="spacer" style="height: 100px;"></div>
+<ion-view title="Selfie Challenge">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content overflow-scroll="true" padding="true" class="has-header padding main-page" ng-controller="ImageController">
+    <div class="spacer" style="height: 100px;"></div>
+
+    <h3>The Kevin Challenge</h3>
+    <div>
+      <p>Take a picture of your own face #nofilter #selfie #yolo #swag</p>
+    </div>
+    <div class="spacer" style="height: 100px;"></div>
     <!-- <button class="button button-full button-energized" ng-click="addMedia()">
       Add image
     </button> -->
-
-<!--this one works-->
-    <button class="button button-full button-energized" ng-click="takePicture()">
+    <!--this one works-->
+    <div class="image-wrapper" ng-hide="!images">
+      <ion-scroll direction="x" style="height:200px; min-height: 200px; overflow: scroll; white-space: nowrap;">
+        <img ng-repeat="image in images" ng-src="{{urlForImage(image)}}" style="height:200px; padding: 5px 5px 5px 5px;" />
+      </ion-scroll>
+    </div>
+    <button class="button button-full button-royal" ng-click="takePicture()">
       Add image
     </button>
-
     <!--<button class="button button-full button-positive" ng-click="sendEmail()">
       Send mail
     </button>-->
-    <br><br>
-    <ion-scroll direction="x" style="height:200px; min-height: 200px; overflow: scroll; white-space: nowrap;">
-      <img ng-repeat="image in images" ng-src="{{urlForImage(image)}}" style="height:200px; padding: 5px 5px 5px 5px;"/>
-    </ion-scroll>
   </ion-content>
   <script>
     console.log($(document).value())
   </script>
-</body>
+</ion-view>

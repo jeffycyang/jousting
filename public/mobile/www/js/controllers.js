@@ -8,6 +8,47 @@ angular.module('app.controllers', ['ionic', 'ngCordova'])
 
 })
 
+.controller('ShakeController', function($scope, $http, $state, $cordovaDeviceMotion, API_URL) {
+
+  var email = window.localStorage.email;
+
+  $scope.countShakes = function() {
+    var shakeCounter = 0;
+    $scope.shakeCount = 0;
+
+    var onShake = function () {
+      shakeCounter++;
+      $scope.$apply(function() {
+        $scope.shakeCount = shakeCounter;
+      });
+      console.log("shake count " + shakeCounter);
+    };
+
+    var stopShakeCount = function() {
+      shake.stopWatch();
+
+      $http.post(API_URL + 'completeChallenge', {
+          email: email,
+          challengeName: 'shakeChallenge',
+          comment: 'completed',
+          submission: shakeCounter.toString(),
+          contentType: 'text/plain'
+        })
+        .success(function(){    
+          $state.go('app.submissions');   
+        })
+        .error(function(err) {
+          console.log('Already sumitted challenge. ' + err);
+        });
+    }
+
+    shake.startWatch(onShake, 10);
+
+    setTimeout(stopShakeCount, 10000);
+  }
+
+})
+
 .controller('ImageController', function($scope, $http, $state, $timeout, $cordovaCamera, API_URL, $cordovaDevice, $cordovaFile, $ionicPlatform, $cordovaEmailComposer, $ionicActionSheet, ImageService, FileService) {
 
   var email = window.localStorage.email;

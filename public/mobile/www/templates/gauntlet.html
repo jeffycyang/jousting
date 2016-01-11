@@ -1,9 +1,10 @@
 <ion-view title="GAUNTLET">
-    <ion-content padding="'true'" class="has-header">
-      <div ng-controller="GauntletCtrl">
+	<ion-nav-buttons side="left">
+    	<button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-content ng-controller="GauntletCtrl" padding="'true'" class="has-header main-page">
         <a ng-hide="userInTeam" ui-sref="app.createTeam" menu-close="" class="button button-stable button-block ">Create A Team</a>
         <a ng-hide="!userInTeam" ui-sref="app.roster" menu-close="" class="button button-stable button-block ">Current Team</a>
         <a ng-hide="userInTeam" ui-sref="app.joinTeam" menu-close="" class="button button-stable button-block ">Join A Team</a>
-      </div>
     </ion-content>
 </ion-view>
