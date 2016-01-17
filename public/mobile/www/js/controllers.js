@@ -12,8 +12,6 @@ angular.module('app.controllers', ['ionic', 'ngCordova'])
 
   var email = window.localStorage.email;
 
-  // var tapView = document.getElementById('tap-view')
-
   $scope.countTaps = function() {
     var tapCounter = 0;
     $scope.tapCount = 0;

@@ -2,13 +2,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var challengeSchema = new Schema({
-    challengeName: {	
-		type: String,
-		trim: true,
-    	required: 'Please enter a challenge name',
-        index: {
-            unique: true
-        }
+  //   challengeName: {	
+		// type: String,
+		// trim: true,
+  //   	required: 'Please enter a challenge name',
+  //       index: {
+  //           unique: true
+  //       }
+  //   },
+    challengeName: {    
+        type: String,
+        trim: true,
+        required: 'Please enter a challenge name'
     },
     team: {	
 		type: Schema.Types.ObjectId, 

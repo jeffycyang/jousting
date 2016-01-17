@@ -1,6 +1,8 @@
-angular.module('app').controller('SubmissionCtrl', function($scope, $state, $http, $timeout, API_URL, $window) {
+angular.module('app').controller('SubmissionCtrl', function($scope, $state, $http, $timeout, $q, API_URL, $window) {
     
   $scope.imgURL = [];
+  $scope.taps = [];
+  $scope.shakes = [];
   var email = window.localStorage.email;
   console.log("email "+email);
   
@@ -28,27 +30,62 @@ angular.module('app').controller('SubmissionCtrl', function($scope, $state, $htt
         $scope.teamInfo.users = usersInTeam;
         console.log(JSON.stringify($scope.teamInfo.users));
 
-        var imgURL = [];
+        // var imgURL = [];
+        // var tapURLs = [];
+        // // var shakeURL = [];
 
-        for(var i = 0 ; i < usersInTeam.length ; i++){
-          console.log(usersInTeam[i]['userName']);
-          // $scope.imgURL.push(API_URL + 'getSubmissionInfo/' + usersInTeam[i]['userName'] + '/selfieChallenge');
-          imgURL.push(API_URL + 'getSubmissionInfo/' + usersInTeam[i]['userName'] + '/selfieChallenge');
-        }
-
-        // for(var j = 0 ; j < imgURL.length ; j++){
-        // $scope.$apply(function(){
-          $scope.$evalAsync(function(){
-            for(var j = 0 ; j < imgURL.length ; j++){
-              // $scope.$apply(function(){
-                $scope.imgURL.push(imgURL[j]);
-                // $scope.imgURL;
-                console.log("wtf "+$scope.imgURL);
-              // });
-            }
-          });
-        // });
+        // var getTapSub = function(ind){
+        //   console.log("index WTF"+ind);
+        //   return $http.get(API_URL + 'getSubmissionInfo/' + usersInTeam[ind]['userName'] + '/tapChallenge')
+        //   .success(function(tapSub){
+        //     console.log("taps bro "+tapSub);
+        //     if(!$scope.taps[ind]){
+        //       $scope.taps[ind] = tapSub;
+        //     }
+        //   });
         // }
+        // for(var i = 0 ; i < usersInTeam.length ; i++){
+        //   console.log(usersInTeam[i]['userName']);
+        //   // $scope.imgURL.push(API_URL + 'getSubmissionInfo/' + usersInTeam[i]['userName'] + '/selfieChallenge');
+        //   imgURL.push(API_URL + 'getSubmissionInfo/' + usersInTeam[i]['userName'] + '/selfieChallenge');
+        //   // tapURLs.push(API_URL + 'getSubmissionInfo/' + usersInTeam[i]['userName'] + '/tapChallenge');
+        //   tapURLs[i] = getTapSub(i);
+        //   // $scope.shakeURL.push(API_URL + 'getSubmissionInfo/' + usersInTeam[i]['userName'] + '/shakeChallenge');
+        // }
+        // for(var j=0;j<tapURLs.length;j++){
+        //     tapURLs[j]();
+        // }
+        // // for(var j = 0 ; j < imgURL.length ; j++){
+        // // $scope.$apply(function(){
+        //   $scope.$evalAsync(function(){
+        //     for(var j = 0 ; j < imgURL.length ; j++){
+        //       // $scope.$apply(function(){
+        //         $scope.imgURL.push(imgURL[j]);
+        //         // $scope.imgURL;
+        //         console.log("wtf "+$scope.imgURL);
+        //       // });
+        //     }
+        //   });
+        // // });
+        // // }
+
+        $http.post(API_URL + 'listChallengeSubmissions', {
+          challengeName: 'tapChallenge'
+        }).success(function(tapSubs) {
+          $scope.taps = tapSubs.submissions;
+          console.log("taps "+tapSubs.submissions);
+          $http.post(API_URL + 'listChallengeSubmissions', {
+            challengeName: 'shakeChallenge'
+          }).success(function(shakeSubs) {
+            console.log("shakes "+shakeSubs.submissions);
+            $scope.shakes = shakeSubs.submissions;
+            $http.post(API_URL + 'listChallengeSubmissions', {
+              challengeName: 'selfieChallenge'
+            }).success(function(imgSubs) {
+              $scope.imgURL = imgSubs.submissions;
+            });
+          });
+        });
 
       })
       .error(function(err) {

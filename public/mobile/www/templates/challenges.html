@@ -5,18 +5,11 @@
   <ion-content ng-controller="ChallengesCtrl" title="Challenges">
 
       <!-- <form class="list">
-            <label class="item item-input" name="teamname">
-            Currently Active Challenges:
-        </form> -->
+        <label class="item item-input" name="teamname">
+        Currently Active Challenges:
+      </form> -->
+
       <h3>{{ teamInfo.teamName }}</h3>
-      <!-- <ion-list>
-        <h4>Challenges</h4>
-        <ul>
-          <li ng-repeat="challenge in challenges">
-            <a ng-href="/#/{{challenge}}">{{ challenge }}</a>
-          </li>
-        </ul>
-      </ion-list> -->
 
       <div class="spacer" style="height: 90px;"></div>
       <a menu-close="" ui-sref="app.selfieChallenge" class="button button-stable button-block ">Selfie Challenge</a>

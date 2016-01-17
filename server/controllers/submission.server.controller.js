@@ -11,13 +11,41 @@ exports.listChallengeSubmissions = function(req, res) {
 		.sort({ createdOn: 'desc' })
 		.exec(function(err, challenge) {
 
-			var images = {}
+			if (err) {
+                return res.sendStatus(500);
+            }
+            if (!challenge) {
+            	var errMsg = 'Sorry, submissions for this challenge do not exist ' + err;
+                console.log(errMsg);
+                return res.sendStatus(500);
+            } else {
+				if(challengeName === 'selfieChallenge') {
+					// res.set('Content-Type', 'image/jpeg');
+					// res.send(new Buffer(submission['submission'],"base64"));
+					var submissions = [];
+					for(var i = 0 ; i < challenge.submissions.length ; i++){
+						// submissions[i] = new Buffer(challenge.submissions[i]['submission'],"base64");
+						submissions[i] = challenge.submissions[i]['submission'];
+					}
+					res.send({submissions: submissions});
+				}
 
-			for(var i = 0 ; i < challenge.submissions.length ; i++){
-				images[i.toString()] = challenge.submissions[i]['submission'];
+				if(challengeName === 'shakeChallenge') {
+					var submissions = [];
+					for(var i = 0 ; i < challenge.submissions.length ; i++){
+						submissions[i] = challenge.submissions[i]['submission'];
+					}
+					res.send({submissions: submissions});
+				}
+
+				if(challengeName === 'tapChallenge') {
+					var submissions = [];
+					for(var i = 0 ; i < challenge.submissions.length ; i++){
+						submissions[i] = challenge.submissions[i]['submission'];
+					}
+					res.send({submissions: submissions});
+				}
 			}
-
-			res.send(images);
 
 		});
 };
@@ -51,12 +79,12 @@ exports.getSubmissionInfo = function(req, res) {
 								}
 
 								if(challengeName === 'shakeChallenge') {
-									res.set('Content-Type', 'text/plain');
+									res.set('Content-Type', 'text/html');
 									res.send(submission['submission']);
 								}
 
 								if(challengeName === 'tapChallenge') {
-									res.set('Content-Type', 'text/plain');
+									res.set('Content-Type', 'text/html');
 									res.send(submission['submission']);
 								}
 							}
