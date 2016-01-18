@@ -49,8 +49,9 @@ exports.completeChallenge = function(req, res) {
     var contentType     = req.body.contentType;
 
 	User.findOne({ email: email })
-		.exec(function(err, user) {
+		.exec(function(err, user){
 			Challenge.findOne({ challengeName: challengeName })
+                .populate( 'submissions usersCompleted' )
 				.exec(function(err, challenge){
                     var submission = new Submission({
                         submission:     sub,
@@ -64,10 +65,54 @@ exports.completeChallenge = function(req, res) {
 
 					user.completedChallenges.addToSet(challenge._id);
 					user.submissions.addToSet(submission._id);
-					//check if someone completed
-					if(challenge.usersCompleted.length===0){
-						user.points += challenge.points;
-					}
+
+                    if(challengeName === 'selfieChallenge'){
+    					//check if someone completed
+    					if(challenge.usersCompleted.length===0){
+    						user.points += challenge.points;
+    					}
+                    }
+                    if(challengeName === 'tapChallenge'){
+                        //check which is highest
+                        var highest=true;
+                        if(challenge.submissions.length>0){
+                            var currHighest=0;
+                            var currHighestUserID;
+                            for(var i=0;i<challenge.submissions.length;i++){
+                                if(Number(challenge.submissions[i]['submission'])>currHighest){
+                                    currHighest=Number(challenge.submissions[i]['submission']);
+                                    currHighestUserID=challenge.submissions[i]['user'];
+                                }
+                                if(Number(challenge.submissions[i]['submission'])>=Number(sub)){
+                                    highest=false;
+                                }
+                            }
+                        }
+                        if(highest){
+                            user.points += challenge.points;
+                        }
+                    }
+                    if(challengeName === 'shakeChallenge'){
+                        //check which is highest
+                        var highest=true;
+                        if(challenge.submissions.length>0){
+                            var currHighest=0;
+                            var currHighestUserID;
+                            for(var i=0;i<challenge.submissions.length;i++){
+                                if(Number(challenge.submissions[i]['submission'])>currHighest){
+                                    currHighest=Number(challenge.submissions[i]['submission']);
+                                    currHighestUserID=challenge.submissions[i]['user'];
+                                }
+                                if(Number(challenge.submissions[i]['submission'])>=Number(sub)){
+                                    highest=false;
+                                }
+                            }
+                        }
+                        if(highest){
+                            user.points += challenge.points;
+                        }
+                    }
+
 					challenge.usersCompleted.addToSet(user._id);
                     challenge.submissions.addToSet(submission._id);
 
@@ -89,8 +134,29 @@ exports.completeChallenge = function(req, res) {
                                             console.log(errMsg);
                                             res.sendStatus(500);
                                         } else {
-                                            console.log('Challenge completed!');
-                                            res.sendStatus(200);
+
+                                            if(currHighestUserID&&highest){
+                                                User.findOne({ _id: currHighestUserID })
+                                                    .exec(function(err, userSub){
+                                                        userSub.points -= challenge.points;
+                                                        userSub.save(function(err) {
+                                                            if (err) {
+                                                                var errMsg = 'Sorry, there was an error completing the challenge ' + err;
+                                                                console.log(errMsg);
+                                                                res.sendStatus(500);
+                                                            } else {
+                                                                console.log('Challenge completed!');
+                                                                res.sendStatus(200);
+                                                            }
+                                                        });
+                                                    });
+                                            }else{
+                                                console.log('Challenge completed!');
+                                                res.sendStatus(200);                                                
+                                            }
+
+                                            // console.log('Challenge completed!');
+                                            // res.sendStatus(200);
                                         }
                                     });
                                 }
