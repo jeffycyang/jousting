@@ -1,0 +1,20 @@
+<ion-view title="Challenges">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content ng-controller="ChallengesCtrl" title="Challenges">
+
+      <!-- <form class="list">
+        <label class="item item-input" name="teamname">
+        Currently Active Challenges:
+      </form> -->
+
+      <h3>{{ teamInfo.teamName }}</h3>
+
+      <div class="spacer" style="height: 90px;"></div>
+      <a menu-close="" ui-sref="app.selfieChallenge" class="button button-stable button-block ">Selfie Challenge</a>
+      <a menu-close="" ui-sref="app.shakeChallenge" class="button button-stable button-block ">Shake Challenge</a>
+      <a menu-close="" ui-sref="app.tapChallenge" class="button button-stable button-block ">Tap Challenge</a>
+  </ion-content>
+</ion-view>
+

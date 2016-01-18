@@ -1,4 +1,4 @@
-# Contributing to *jousting*
+# Contributing to jousting
 
 ## Thoughts on Style
 Please follow the guidelines set out in the [Airbnb JavaScript ES5 Style Guide](https://github.com/airbnb/javascript/tree/master/es5).
@@ -28,7 +28,7 @@ To integrate the feature into the official codebase, the maintainer pulls the co
 
 ### Example
 #### The scrum master initializes the official repository
-The official repository exists [here](https://github.com/RickyAndTheWalkers/jousting.io.git).
+The official repository exists [here](https://github.com/RickyAndTheWalkers/jousting.git).
 
 #### Developers fork the official repository
 At the link above, click the *Fork* button in the upper right-hand corner. After this step, every developer has their own server-side repository.
@@ -36,14 +36,14 @@ At the link above, click the *Fork* button in the upper right-hand corner. After
 #### Developers clone their forked repositories
 Each developer needs to clone their own public repository. They can do the familiar `git clone` command in the terminal using, for example:
 
-```
-  git clone https://github.com/<username>/jousting.io.git
+```shell
+  git clone https://github.com/<username>/jousting.git
 ```
 
 The Forking Workflow requires two remotes - one for the official repository, and one for the developer's personal server-side repository. Use `origin` as the name of the remote for your forked repository (this is automatically creates when you run 'git clone') and `upstream` for the official repository.
 
-```
-  git remote add upstream https://github.com/RickyAndTheWalkers/jousting.io.git
+```shell
+  git remote add upstream https://github.com/RickyAndTheWalkers/jousting.git
 ```
 
 You'll need to create the upstream remote yourself using the above command. This will let you easily keep your local repository up-to-date as the official project progresses.
@@ -51,7 +51,7 @@ You'll need to create the upstream remote yourself using the above command. This
 #### Developers work on their features
 In the local repositories that they cloned, developers can edit code, commit changes, and create branches.
 
-```
+```shell
   git checkout -b <feature-branch-name> (see below for branch naming conventions)
   # Edit some code
   git add
@@ -60,14 +60,14 @@ In the local repositories that they cloned, developers can edit code, commit cha
 
 All of their changes will be private until they push it to their public repository. And, if the official project has moved forward, they can access new commits with `git pull --rebase`:
 
-```
+```shell
   git pull --rebase upstream dev
 ```
 
 #### Developers publish their features
 Once a developer is ready to share their new feature, they need to do two things. First, they have to make their contribution accessible to other developers by pushing it to their public repository. Their origin remote should already be set up, so all they should have to do is the following:
 
-```
+```shell
   git push origin <feature-branch-name>
 ```
 
@@ -76,7 +76,7 @@ Second, they need to notify the scrum master that they want to merge their featu
 #### The scrum master integrates their features
 When the scrum master receives the pull request, his job is to decide whether or not to integrate it into the official codebase. To do this, he (or a developer he delegates the task to) will pull the code into their local repository. The scrum master needs to `fetch` the feature branch from the developer's server-side repository into his own local repository after checking out a review branch for the specific review in question.
 
-```
+```shell
   git fetch https://github.com/user/repo <feature-branch-name>
 ```
 
@@ -87,7 +87,7 @@ When no problems exist in the changes, the scrum master can merge those changes 
 #### Developers synchronize with the official repository
 Since the main codebase has moved forward, other developers should synchronize with the official repository:
 
-```
+```shell
   git pull --rebase upstream dev
 ```
 
@@ -95,7 +95,7 @@ Since the main codebase has moved forward, other developers should synchronize w
 
 In local branch `dev`:
 
-```
+```shell
   git pull --rebase upstream dev
   git checkout -b <feature-branch-name>
   # Make changes
@@ -133,19 +133,19 @@ Must be one of the following:
 ### Submitting a Pull Request
 * Make your changes in a new git branch
 
-```
+```shell
   git checkout -b <feature-branch>
 ```
 
 * Add your changes
 
-```
+```shell
   git add <file-name>
 ```
 
 * Commit your changes using a descriptive commit message
 
-```
+```shell
   git commit -m <commit-message>
 ```
 
@@ -159,9 +159,9 @@ Must be one of the following:
 ### Git Commit Guidelines
 The **header** of the commit message must include a **type** and a **subject**.
 
-> [type] subject
+> (type) subject
 
-> e.g. [feature] add login button
+> e.g. (feature) add login button
 
 Please also include a **body**.
 
@@ -178,12 +178,12 @@ Must be one of the following:
 
 #### Subject
 The subject contains a succinct description of the change:
-* use the imperative, present tense: "change", not "changed" not "changes"
+* use the present tense, reffering to the current state: "changes", not "changed" not "change"
 * do not capitalize the first letter
 * do not include a dot/period(.) at the end
 
 #### Body
-Just as in the **subject**, use the imperative, present tense. The body should include *the motivation for the change* and *contrast this with previous behavior*.
+Just as in the **subject**, use the present tense. The body should include *the motivation for the change* and *contrast this with previous behavior*.
 
 #####Special Thanks
 Thanks to [Matthew Murkidjanian](https://github.com/mmurkidjanian) for the contributing guide.

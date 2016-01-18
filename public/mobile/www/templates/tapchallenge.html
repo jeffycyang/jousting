@@ -1,0 +1,24 @@
+<ion-view title="Tap Challenge" id="tap-view">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content overflow-scroll="true" padding="true" class="has-header padding main-page" ng-controller="TapController">
+    <div class="spacer" style="height: 100px;"></div>
+    <h3>The Tapping Challenge</h3>
+    <div>
+      <p>Tap screen as many times as possible for 10 seconds</p>
+    </div>
+    <div class="spacer" style="height: 100px;">
+      <h2 style="text-align: center;">{{ tapCount }}</h2>
+    </div>
+    <!-- <div>
+      <span>{{ tapCount }}</span>
+    </div> -->
+    <button class="button button-full button-royal" ng-click="countTaps()">
+      Press to Start Tapping
+    </button>
+  </ion-content>
+  <script>
+    console.log($(document).value())
+  </script>
+</ion-view>

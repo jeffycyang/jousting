@@ -1,6 +1,42 @@
-<ion-view title="Home">
-    <ion-content padding="'true'" class="has-header">
-        <a menu-close="" href="#/create-a-team" class="button button-stable button-block ">Create A Team</a>
-        <a menu-close="" href="#/join-a-team" class="button button-stable button-block ">Join A Team</a>
+<ion-view title="JOUSTING">
+    <ion-content padding="'true'" class="has-header main-page">
+        <div class="title">
+            <!--joust header image-->
+            <div id="jouster"></div>
+            <span class="welcome"><strong>Compete for Victory</strong></span>
+            <span class="bold-text big-text"> - With friends, against friends.</span>
+            <!-- <audio autoplay src="img/trumpets.webm" onended="neverPlayAgain()"></audio> -->
+            <style>
+            audio {
+                display: none;
+            }
+            div#jouster {
+                width: 100%;
+            }
+            
+            @media all and (orientation:portrait) {
+                /* Styles for Portrait screen */
+                div#jouster {
+                    content: url(../img/joust-single.gif);
+                }
+                ​
+            }
+            
+            @media all and (orientation:landscape) {
+                /* Styles for Landscape screen */
+                div#jouster {
+                    content: url(../img/joust-double.gif);
+                }
+                ​
+            }
+            </style>
+            <!--<script type="text/javascript">
+            function neverPlayAgain() {
+                
+            }
+            </script>-->
+        </div>
+        <a ui-sref="app.login" class="button button-stable button-block ">Account Login</a>
+        <a ui-sref="app.register" class="button button-stable button-block ">Register an Account</a>
     </ion-content>
 </ion-view>

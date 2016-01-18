@@ -1,0 +1,56 @@
+<ion-view ng-controller="SubmissionCtrl" title="Submissions">
+<ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+    <ion-content padding="'true'" class="has-header main-page">
+    <div ng-app="app">
+        <h3>{{ challengesInTeam }}</h3>
+        <!--<ion-list>
+            <h4>Tap Challenge Submissions</h4>
+            <ul>
+              <li ng-repeat="tap in taps">
+                <h2>{{ tap }}</h2>
+              </li>
+            </ul>
+            <h4>Shake Challenge Submissions</h4>
+            <ul>
+              <li ng-repeat="shake in shakes">
+                <h2>{{ shake }}</h2>
+              </li>
+            </ul>
+            <h4>Selfie Challenge Submissions</h4>
+            
+            <ion-scroll direction="x" style="height:200px; min-height: 200px; overflow: scroll; white-space: nowrap;">
+              <img ng-repeat="img in imgURL" ng-src="data:image/jpeg;base64,{{img[0]}}"/>
+            </ion-scroll>        
+        </ion-list>-->
+        <ion-list>
+            <h3 style="font-weight:bold;">Shake Challenge Submissions</h3>
+            <ul>
+              <li ng-repeat="shake in shakes">
+                  <h4>Challenger: {{ shake[1] }} <span style="float:right;">Taps: {{ shake[0] }}</span></h4>
+              </li>
+            </ul>
+            <h3 style="font-weight:bold;">Tap Challenge Submissions</h3>
+            <ul>
+              <li ng-repeat="tap in taps">
+                  <h4>Challenger: {{ tap[1] }} <span style="float:right;">Taps: {{ tap[0] }}</span></h4>
+              </li>
+            </ul>
+            <h3 style="font-weight:bold;">Selfie Challenge Submissions</h3>
+            <ul>
+              <li ng-repeat="img in imgURL">
+                  <h4>Challenger: {{ img[1] }}</h4><img ng-src="data:image/jpeg;base64,{{img[0]}}"/>
+              </li>
+            </ul>
+        </ion-list>
+        <div class="spacer" style="height: 90px;"></div>
+        <a menu-close="" ui-sref="app.challenges" class="button button-stable button-block ">Challenges</a>
+    </div>
+    </ion-content>
+</ion-view>
+            <!-- <img ng-repeat="users in teamInfo.users" ng-src="getSubmissionInfo/{{teamInfo.users[$index]['userName']}}/{{challengesInTeam}}"/> -->
+
+            <!-- <ion-scroll direction="x" style="height:200px; min-height: 200px; overflow: scroll; white-space: nowrap;">
+                <img ng-repeat="img in imgURL" ng-src="{{img}}"/>
+            </ion-scroll> -->
