@@ -12,6 +12,7 @@ var submissionSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
     },
+    userName: String,
 	challenge: {	
 		type: Schema.Types.ObjectId,
 		ref: 'Challenge'
@@ -25,5 +26,7 @@ var submissionSchema = new Schema({
 		default: Date.now
 	}
 });
+
+submissionSchema.index({ user: 1, challenge: 1 }, { unique: true });
 
 module.exports = mongoose.model( 'Submission', submissionSchema );

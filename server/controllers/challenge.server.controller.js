@@ -38,7 +38,7 @@ exports.createChallenge = function(req, res) {
                     });
                 }
             });
-        })
+        });
 };
 
 exports.completeChallenge = function(req, res) {
@@ -57,6 +57,7 @@ exports.completeChallenge = function(req, res) {
                         contentType:    contentType,
                         comment:        comment,
                         user:           user._id,
+                        userName:       user.userName,
                         challenge:      challenge._id,
                         team:           challenge.team
                     });

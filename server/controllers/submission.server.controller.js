@@ -25,7 +25,7 @@ exports.listChallengeSubmissions = function(req, res) {
 					var submissions = [];
 					for(var i = 0 ; i < challenge.submissions.length ; i++){
 						// submissions[i] = new Buffer(challenge.submissions[i]['submission'],"base64");
-						submissions[i] = challenge.submissions[i]['submission'];
+						submissions[i] = [challenge.submissions[i]['submission'], challenge.submissions[i]['userName']];
 					}
 					res.send({submissions: submissions});
 				}
@@ -33,7 +33,7 @@ exports.listChallengeSubmissions = function(req, res) {
 				if(challengeName === 'shakeChallenge') {
 					var submissions = [];
 					for(var i = 0 ; i < challenge.submissions.length ; i++){
-						submissions[i] = challenge.submissions[i]['submission'];
+						submissions[i] = [challenge.submissions[i]['submission'], challenge.submissions[i]['userName']];
 					}
 					res.send({submissions: submissions});
 				}
@@ -41,7 +41,7 @@ exports.listChallengeSubmissions = function(req, res) {
 				if(challengeName === 'tapChallenge') {
 					var submissions = [];
 					for(var i = 0 ; i < challenge.submissions.length ; i++){
-						submissions[i] = challenge.submissions[i]['submission'];
+						submissions[i] = [challenge.submissions[i]['submission'], challenge.submissions[i]['userName']];
 					}
 					res.send({submissions: submissions});
 				}
