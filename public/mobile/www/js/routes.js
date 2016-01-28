@@ -202,3 +202,4 @@ angular.module('app')
 })
 
 .constant('API_URL', 'http://localhost:8000/');
+// .constant('API_URL', 'http://ec2-52-89-69-134.us-west-2.compute.amazonaws.com/');

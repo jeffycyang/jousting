@@ -25,8 +25,7 @@ angular.module('app').controller('SubmissionCtrl', function($scope, $state, $htt
       $http.post(API_URL + 'roster', {
         teamName: teamUserIsIn
       }).success(function(users) {
-        console.log('cory', users);
-        usersInTeam = users["users"];
+        usersInTeam = users['users'];
         $scope.teamInfo.users = usersInTeam;
         console.log(JSON.stringify($scope.teamInfo.users));
 
