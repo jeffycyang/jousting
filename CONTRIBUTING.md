@@ -28,7 +28,7 @@ To integrate the feature into the official codebase, the maintainer pulls the co
 
 ### Example
 #### The scrum master initializes the official repository
-The official repository exists [here](https://github.com/RickyAndTheWalkers/jousting.io.git).
+The official repository exists [here](https://github.com/RickyAndTheWalkers/jousting.git).
 
 #### Developers fork the official repository
 At the link above, click the *Fork* button in the upper right-hand corner. After this step, every developer has their own server-side repository.
@@ -37,13 +37,13 @@ At the link above, click the *Fork* button in the upper right-hand corner. After
 Each developer needs to clone their own public repository. They can do the familiar `git clone` command in the terminal using, for example:
 
 ```shell
-  git clone https://github.com/<username>/jousting.io.git
+  git clone https://github.com/<username>/jousting.git
 ```
 
 The Forking Workflow requires two remotes - one for the official repository, and one for the developer's personal server-side repository. Use `origin` as the name of the remote for your forked repository (this is automatically creates when you run 'git clone') and `upstream` for the official repository.
 
 ```shell
-  git remote add upstream https://github.com/RickyAndTheWalkers/jousting.io.git
+  git remote add upstream https://github.com/RickyAndTheWalkers/jousting.git
 ```
 
 You'll need to create the upstream remote yourself using the above command. This will let you easily keep your local repository up-to-date as the official project progresses.

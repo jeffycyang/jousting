@@ -23,5 +23,18 @@ coverage
 build/Release
 
 # Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+bower_components
+public/mobile/www/lib
+public/mobile/platforms/ios
+platforms
+plugins
+
+# Compiled css
+public/mobile/www/css
+
+#database
+db
+
+# Secrets
+server/services/config.js

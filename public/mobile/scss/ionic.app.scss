@@ -21,3 +21,29 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+img.user-image {
+  border-radius: 50%;
+}
+
+span.dev-name {
+  font-weight: bold;
+}
+
+span.soc-link {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+button.soc-button {
+  margin-top: 5px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+ion-content.us {
+  background-image: url('../img/ricky-faded.jpg');
+}
+
+ion-item.trans {
+  background-color: rgba(255, 255, 255, .3);
+}

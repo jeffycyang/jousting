@@ -1,0 +1,14 @@
+<ion-view title="Create A Team">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content ng-controller="CreateTeamCtrl" padding="'true'" class="has-header main-page">
+    <form class="list" ng-submit="createTeam()">
+      <label class="item item-input" name="teamname">
+        <input type="text" placeholder="Team Name" ng-model="team.teamName">
+      </label>
+      <div class="spacer" style="height: 100px;"></div>
+      <button menu-close="" type="submit" class="button button-stable button-block ">Done</button>
+    </form>
+  </ion-content>
+</ion-view>

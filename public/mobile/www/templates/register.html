@@ -1,22 +1,24 @@
-<ion-view title="Register">
-    <ion-content padding="'true'" scroll="false" class="has-header">
-        <form class="list">
-            <ion-list>
-                <label class="item item-input" name="Name">
-                    <input type="text" placeholder="Name">
-                </label>
-                <label class="item item-input" name="Username">
-                    <input type="text" placeholder="Username">
-                </label>
-                <label class="item item-input" name="Email">
-                    <input type="email" placeholder="Email">
-                </label>
-                <label class="item item-input" name="Password">
-                    <input type="password" placeholder="Password">
-                </label>
-            </ion-list>
-            <a menu-close="" href="#/home" class="button button-stable button-block ">Register</a>
-        </form>
-        <a menu-close="" href="#/login" class="button button-stable button-block ">Log in</a>
-    </ion-content>
+<ion-view title="Register an account">
+  <ion-content ng-controller="RegisterCtrl" padding="'true'" scroll="false" class="has-header main-page">
+    <form class="form-auth" name="register" class="css-form" ng-submit="submit()" novalidate>
+      <ion-list>
+        <label class="item item-input">
+          <input type="text" ng-model="user.fullName" name="name" placeholder="Name" required/>
+        </label>
+        <label class="item item-input">
+            <div>
+                <input type="text" ng-model="user.userName" placeholder="Choose Username" name="name" />
+            </div>
+        </label>
+        <label class="item item-input">
+          <input type="email" ng-model="user.email" name="email" placeholder="Email" required/>
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="user.password" name="password" placeholder="Password" required/>
+        </label>
+      </ion-list>
+      <input ng-disabled="register.$invalid" type="submit" menu-close="" class="button button-stable button-block " value="Submit Registration" />
+    </form>
+    <a menu-close="" ui-sref="app.login" class="button button-stable button-block ">Already have an account?</a>
+  </ion-content>
 </ion-view>

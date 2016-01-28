@@ -1,11 +1,10 @@
-<ion-view title="Gauntlet">
-    <ion-content padding="'true'" class="has-header">
-        <div class="title">
-            <span class="welcome">Welcome to</span>
-            <span class="bold-text big-text">Gauntlet</span>
-        </div>
-        <div class="spacer" style="height: 100px;"></div>
-        <a menu-close="" href="#/login" class="button button-stable button-block ">Log in</a>
-        <a menu-close="" href="#/register" class="button button-stable button-block ">Register</a>
-    </ion-content>
+<ion-view title="GAUNTLET">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content ng-controller="GauntletCtrl" padding="'true'" class="has-header main-page">
+     <a menu-close="" ng-hide="userInTeam" ui-sref="app.createTeam" class="button button-stable button-block ">Create A Team</a>
+      <a ng-hide="!userInTeam" ui-sref="app.roster" class="button button-stable button-block ">Current Team</a>
+      <a ng-hide="userInTeam" ui-sref="app.joinTeam" class="button button-stable button-block ">Join A Team</a>
+  </ion-content>
 </ion-view>

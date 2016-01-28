@@ -1,16 +1,20 @@
 <ion-view title="Login">
-    <ion-content padding="'true'" class="has-header">
-        <form class="list">
-            <ion-list>
-                <label class="item item-input" name="Username">
-                    <input type="text" placeholder="Username">
-                </label>
-                <label class="item item-input" name="Password">
-                    <input type="password" placeholder="Password">
-                </label>
-            </ion-list>
-            <a menu-close="" href="#/home" class="button button-stable button-block ">Log in</a>
-        </form>
-        <a menu-close="" href="#/register" class="button button-stable button-block ">Register</a>
-    </ion-content>
+  <ion-content ng-controller="LoginCtrl" padding="'true'" class="has-header main-page">
+    <form ng-submit="submit()" name="login" class="list" novalidate>
+      <ion-list>
+        <label class="item item-input">
+          <input name="email" ng-model="user.email" type="text" placeholder="Email" required/>
+        </label>
+        <label class="item item-input">
+          <input name="password" ng-model="user.password" type="password" placeholder="Password" required/>
+        </label>
+      </ion-list>
+      <button ng-disabled="login.$invalid" type="submit" class="button button-stable button-block">Login</button>
+      <a class="button button-stable button-block" ui-sref="app.register">Register</a>
+      <label class="item">
+        <button ng-click="authenticate('facebook')" class="button button-block button-positive">
+          Login with Facebook</button>
+      </label>
+    </form>
+  </ion-content>
 </ion-view>

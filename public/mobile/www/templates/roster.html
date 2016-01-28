@@ -1,32 +1,22 @@
 <ion-view title="Roster">
-    <ion-content padding="'true'" class="has-header">
-        <h3>Ricky &amp; The Walkers</h3>
-        <ion-list>
-            <ion-item menu-close="" class="item-thumbnail-left">
-                <img src="img/MZ0UDKplQGia0OkBShZS_avi.jpg">
-                <h2>Avi Samloff</h2>
-                <p>theavish</p>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon ion-navicon-round" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content ng-controller="RosterCtrl"  padding="'true'" class="has-header main-page">
+      <h3>Team: {{ teamInfo.teamName }}</h3>
+      <ion-list>
+        <h4>Challengers</h4>
+        <ul>
+          <li ng-repeat="users in teamInfo.users">
+            <ion-item menu-close="" class="item-thumbnail-left challenger-listing">
+              <img ng-src="{{ teamInfo.users[$index].picture }}">
+              <h2 style="float:left;">{{ teamInfo.users[$index].fullName }}</h2><h2 style="float:right;">points: {{ teamInfo.users[$index].points }}</h2>
             </ion-item>
-            <ion-item menu-close="" class="item-thumbnail-left">
-                <img src="img/QonE6znSy66AXyLW3wmg_Screen Shot 2015-12-03 at 7.53.22 AM.png">
-                <h2>Jonathan Kvicky</h2>
-                <p>jonkvix</p>
-            </ion-item>
-            <ion-item menu-close="" class="item-thumbnail-left">
-                <img src="img/YKIpnnZUTvC5sY4aTYfo_Screen Shot 2015-12-03 at 7.54.02 AM.png">
-                <h2>Jeffery Yang</h2>
-                <p>jeffycyang</p>
-            </ion-item>
-            <ion-item menu-close="" class="item-thumbnail-left">
-                <img src="img/Q8lFct0yTF2CtsyX850Y_600232_10151149200186519_191777586_n.jpg">
-                <h2>Kevin Cheng</h2>
-                <p>k-cheng</p>
-            </ion-item>
-            <ion-item menu-close="" class="item-thumbnail-left">
-                <img src="img/z91U0MVqSb6S0LNhhLPd_Screen Shot 2015-12-03 at 7.53.52 AM.png">
-                <h2>Cory Dang</h2>
-                <p>coryd4ng</p>
-            </ion-item>
-        </ion-list>
-    </ion-content>
+          </li>
+        </ul>
+      </ion-list>
+      <div class="spacer" style="height: 90px;"></div>
+      <a menu-close="" ui-sref="app.challenges" class="button button-stable button-block ">Challenges</a>
+      <a menu-close="" ng-controller="LeaveTeamCtrl" ng-click="leaveTeam()" class="button button-stable button-block ">Leave Team</a>
+  </ion-content>
 </ion-view>

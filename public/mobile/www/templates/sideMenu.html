@@ -1,0 +1,32 @@
+<ion-side-menus>
+  <ion-side-menu class="side-menu" side="left">
+    <div class="side-menu list" ng-controller="SideMenuCtrl">
+      <a menu-close="" class="side-menu item item-icon-left" ui-sref="app.gauntlet">
+        <i class="icon ion-home"></i> <p>Home</p>
+      </a>
+      <a menu-close="" class="side-menu item item-icon-left" ui-sref="app.challenges">
+        <i class="icon ion-social-buffer"></i> Challenges
+      </a>
+      <a menu-close="" class="side-menu item item-icon-left" ui-sref="app.roster">
+        <i class="icon ion-ios-people"></i> Team Roster
+      </a>
+      <a menu-close="" class="side-menu item item-icon-left" ui-sref="app.submissions">
+        <i class="icon ion-plus-round"></i> <p>Submissions</p>
+      </a>
+      <a menu-close="" class="side-menu item item-icon-left" ng-hide="userIsInTeam" ui-sref="app.createTeam">
+        <i class="icon ion-person-add"></i> Create A Team
+      </a>
+      <a menu-close="" class="side-menu item item-icon-left" ng-hide="userIsInTeam" ui-sref="app.joinTeam">
+        <i class="icon ion-person-stalker"></i> Join A Team
+      </a>
+      <a menu-close="" ng-controller="LogoutCtrl" ng-click="logout()" class="side-menu item item-icon-left">
+        <i class="icon ion-log-out"></i> Log Out
+      </a>
+    </div>
+  </ion-side-menu>
+  <ion-side-menu-content class="sideNav" drag-content="false">
+    <ion-nav-bar class="nav-title-slide-ios7 bar-custom title-bar">
+    </ion-nav-bar>
+    <ion-nav-view name="app-nav"></ion-nav-view>
+  </ion-side-menu-content>
+</ion-side-menus>
