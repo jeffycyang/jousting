@@ -7,7 +7,7 @@ var busboyBodyParser = require('busboy-body-parser');
 var User = require('./server/models/user.server.model.js');
 // Create Express instance
 var app = express();
-var port = process.env.port || 8000;
+var port = process.env.port || 8080;
 // var server = require('http').createServer(app);
 // var io = require('socket.io').listen(server);
 // app.set('port', port);
@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/jousting_db');
 // Middlewares
 app.use(express.static(__dirname + '/public/mobile/www'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(busboyBodyParser());
 
 // Enable CORS
@@ -59,3 +59,4 @@ app.use('/', authRouter, teamRouter, rosterRouter, challengeRouter);
 app.listen(port, function (err) {
   console.log('running server on port over ' + port + "!!!!");
 });
+
